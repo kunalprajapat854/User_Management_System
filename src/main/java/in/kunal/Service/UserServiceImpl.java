@@ -131,6 +131,8 @@ public class UserServiceImpl implements UserService {
 		String specialCharacters = "!@#$";
 		String numbers = "1234567890";
 
+		
+		
 		String combineAll = capitalCaseLetters + lowerCaseLetters + specialCharacters + numbers;
 		Random random = new Random();
 
@@ -142,4 +144,6 @@ public class UserServiceImpl implements UserService {
 		return buffer.toString();
 
 	}
+
 }
+
