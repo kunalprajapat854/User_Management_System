@@ -5,6 +5,7 @@ public class Registration {
 	private String name;
 	private String email;
 	private String phno;
+	private String pwd;
 	private String updatepwd;
 
 	private Integer countryId;
@@ -66,5 +67,15 @@ public class Registration {
 	public void setUpdatepwd(String updatepwd) {
 		this.updatepwd = updatepwd;
 	}
+
+	public String getPwd() {
+		return pwd;
+	}
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+	
+	
 
 }

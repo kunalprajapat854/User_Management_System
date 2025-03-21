@@ -58,6 +58,7 @@ public class UserServiceImpl implements UserService {
 		List<States> stateslist = statesrepo.findByCountryId(countryId);
 		for (States states : stateslist) {
 			statesMap.put(states.getStatesId(), states.getStatesName());
+			System.out.println(statesMap);
 		}
 		return statesMap;
 	}
@@ -115,7 +116,7 @@ public class UserServiceImpl implements UserService {
 		User entity = userrepo.findByEmail(email);
 		entity.setPwd(forgotPwd.getNewpwd());
 		entity.setUpdatepwd("YES");
-		userrepo.save(entity);   //UPSERT 
+		userrepo.save(entity); // UPSERT
 		return true;
 	}
 
@@ -131,8 +132,6 @@ public class UserServiceImpl implements UserService {
 		String specialCharacters = "!@#$";
 		String numbers = "1234567890";
 
-		
-		
 		String combineAll = capitalCaseLetters + lowerCaseLetters + specialCharacters + numbers;
 		Random random = new Random();
 
@@ -146,4 +145,3 @@ public class UserServiceImpl implements UserService {
 	}
 
 }
-

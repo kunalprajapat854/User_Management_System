@@ -68,7 +68,7 @@ public class UserController {
 				model.addAttribute("Failed", "Registration Failed Due to Duplicate Email Found");
 			}
 		}
-		model.addAttribute("countries", service.getcountries());
+		model.addAttribute("countryMap", service.getcountries());
 		return "register";
 
 	}
@@ -85,6 +85,7 @@ public class UserController {
 		Registration registration = service.login(login);
 		if (registration == null) {
 			model.addAttribute("emsg", "Invalid Credentials");
+		     model.addAttribute("login", new Login());
 		} else {
 			String updatepwd = registration.getUpdatepwd();
 			if (updatepwd.equals("YES")) {
@@ -112,9 +113,9 @@ public class UserController {
 		return "resetPwd";
 
 	}
-    
+
 	@PostMapping("/reset-pwd")
-	public String handlelogin(Model model, ForgotPwd forgotPwd) {
+	public String handleresetPwd(Model model, ForgotPwd forgotPwd) {
 		boolean password = service.forgotpwd(forgotPwd);
 		if (password) {
 			return "redirect:dashboard";
