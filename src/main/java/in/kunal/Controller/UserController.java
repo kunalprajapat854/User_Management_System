@@ -2,6 +2,7 @@ package in.kunal.Controller;
 
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,7 @@ public class UserController {
 
 	private UserService service;
 
+	@Autowired
 	private DashboardService dashboardService;
 
 	public UserController(UserService service, UserRepo repo, DashboardService dashboardService) {
@@ -102,7 +104,9 @@ public class UserController {
 	@GetMapping("/dashboard")
 	public String dashboardpage(Model model) {
 		QuotesAPI quotesApi = dashboardService.getQuotesApi();
-		model.addAttribute("quote", quotesApi);
+		model.addAttribute("quotes", quotesApi);
+		System.out.println("Quote: " + quotesApi);  // Check for null
+
 		return "dashboard";
 
 	}

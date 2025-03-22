@@ -16,8 +16,13 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: kunalprajapat221@gmail.com
-    password: Kunal@2003
+    protocol: smtp
+    username: virajprjapat854@gmail.com
+    password: rnqiexqhrduofodv
+    properties:
+           mail.smtp.auth: true
+           mail.smtp.starttls.enable: true
+    
   
 # TomCat PortNumber   
 server:
