@@ -13,13 +13,13 @@ This mini-project is a User Management System built using Spring Boot. It aims t
 ## 3. Project Structure:
 ```
 src/main/java
-│── com.example.usermanagement
+│── in.kunal
 │   ├── controller
 │   ├── service
 │   ├── repository
 │   ├── entity
 │   ├── binding
-│   └── config
+
 src/main/resources
 │── templates (Thymeleaf HTML files)
 │── static (CSS, JS)
