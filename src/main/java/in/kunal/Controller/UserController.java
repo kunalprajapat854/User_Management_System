@@ -68,6 +68,7 @@ public class UserController {
 				model.addAttribute("Failed", "Registration Failed Due to Duplicate Email Found");
 			}
 		}
+		model.addAttribute("register", new Registration());
 		model.addAttribute("countryMap", service.getcountries());
 		return "register";
 
@@ -85,13 +86,13 @@ public class UserController {
 		Registration registration = service.login(login);
 		if (registration == null) {
 			model.addAttribute("emsg", "Invalid Credentials");
-		     model.addAttribute("login", new Login());
+			model.addAttribute("login", new Login());
 		} else {
 			String updatepwd = registration.getUpdatepwd();
 			if (updatepwd.equals("YES")) {
 				return "redirect:dashboard";
 			} else {
-				return "redirect:rest-pwd-page?email=" + registration.getEmail();
+				return "redirect:reset-pwd-page?email=" + registration.getEmail();
 			}
 		}
 		return "login";
@@ -101,15 +102,16 @@ public class UserController {
 	@GetMapping("/dashboard")
 	public String dashboardpage(Model model) {
 		QuotesAPI quotesApi = dashboardService.getQuotesApi();
-		model.addAttribute("quotes", quotesApi);
+		model.addAttribute("quote", quotesApi);
 		return "dashboard";
 
 	}
 
-	@GetMapping("/rest-pwd-page")
+	@GetMapping("/reset-pwd-page")
 	public String loadingrestpwdPage(Model model, @RequestParam("email") String email) {
 		ForgotPwd forgotPwd = new ForgotPwd();
 		forgotPwd.setEmail(email);
+		model.addAttribute("resetPwd", forgotPwd);
 		return "resetPwd";
 
 	}
@@ -120,7 +122,6 @@ public class UserController {
 		if (password) {
 			return "redirect:dashboard";
 		}
-
 		return "resetPwd";
 
 	}

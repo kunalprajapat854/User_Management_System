@@ -14,38 +14,63 @@
 
 			$("#countryId").on("change", function () {
 
-		        var  cid = $("#countryId").val();
-		       // alert("CountryId change" +  cid);
-		        
-		       $.ajax({
-				   type : 'GET',
-				   url : '/states/' +  cid,
-				   success :  function(response){
-					   console.log(response);
-				   }
-			   });
+				var cid = $("#countryId").val();
+				//	alert("CountryId change" + cid);
+
+				$("#statesId").find('option').remove();  // remove previous values of dropdown
+				$('<option>').val('').text('-Select-').appendTo("#statesId");
+
+
+				$.ajax({
+					type: 'GET',
+					url: '/states/' + cid,
+					success: function (response) {
+						// console.log(response);
+						//iterate statesMap  response 	as drop down in register page.
+
+						$.each(response, function (key, value) {
+							$('<option>').val(key).text(value).appendTo("#statesId");
+						});
+
+
+
+					}
+				});
+
+			});
+
+
+			$("#statesId").on("change", function () {
+
+				var sid = $("#statesId").val();
+				//alert("statesId change" + sid);
+
+				$("#cityId").find('option').remove();  // remove previous values of dropdown
+				$('<option>').val('').text('-Select-').appendTo("#cityId");
+
+				$.ajax({
+					type: 'GET',
+					url: '/cities/' + sid,
+					success: function (response) {
+						// console.log(response);
+						//iterate statesMap  response 	as drop down in register page.
+
+						$.each(response, function (key, value) {
+							$('<option>').val(key).text(value).appendTo("#cityId");
+						});
+					}
+				});
 
 			});
 
 		});
 	</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </head>
 <font style="color: red;">
 	<p th:text="${emsg}"></p>
+</font>
+<font style="color: green;">
+	<p th:text="${Saved}"></p>
 </font>
 
 <body>
